@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string rotate(int m, int i, int dim)
+{
+    if(!((i/(dim-1))%(dim-1) == 0 || (i%(dim-1))%(dim-1) == 0))
+    {
+      return to_string(m);
+    }
+    return "";
+}
+
+int main() {
+    int dim;
+    cin >> dim;
+    int m;
+    int i = 0;
+    while(true)
+    {
+            i += 1;
+            if(i ==1){continue;}
+            cin >> m;
+            cout<<m<<" ";
+            
+    }
+}
