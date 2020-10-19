@@ -39,10 +39,10 @@ struct AABB {
     max[X] = max[Y] = numeric_limits<double>::lowest();
     double x, y, w, h;
     cin >> x >> y >> w >> h;
-    if (x < min[X]) min[X] = x - w/2;
-    if (x > max[X]) max[X] = x + w/2;
-    if (y < min[Y]) min[Y] = y - h/2;
-    if (y > max[Y]) max[Y] = y + h/2;
+    if (x - w/2 < min[X]) min[X] = x - w/2;
+    if (x + w/2 > max[X]) max[X] = x + w/2;
+    if (y - h/2 < min[Y]) min[Y] = y - h/2;
+    if (y + h/2 > max[Y]) max[Y] = y + h/2;
   }
 
   // Read a circle from user input and calculates AABB
@@ -52,10 +52,10 @@ struct AABB {
     max[X] = max[Y] = numeric_limits<double>::lowest();
     double x, y, r;
     cin >> x >> y >> r;
-    if (x < min[X]) min[X] = x - r;
-    if (x > max[X]) max[X] = x + r;
-    if (y < min[Y]) min[Y] = y - r;
-    if (y > max[Y]) max[Y] = y + r;
+    if (x - r < min[X]) min[X] = x - r;
+    if (x + r > max[X]) max[X] = x + r;
+    if (y - r < min[Y]) min[Y] = y - r;
+    if (y + r > max[Y]) max[Y] = y + r;
   }
 
 };
@@ -112,11 +112,11 @@ int main()
     // --- YOUR CODE HERE (Task 2) ---
     AABB box = boxes[i];
 
-    cout << "AABB";
+    cout << "AABB ";
     cout << setfill('0') << setw(2);
     cout << i;
     cout << " : ";
-    cout << box.min[0] + (box.max[0] - box.min[0])/2 <<" "<< box.min[1] + (box.max[1] - box.min[1])/2 <<" "<< box.max[0] - box.min[0] <<" "<< box.max[1] - box.min[1] <<endl;
+    cout << box.min[0]  <<" "<< box.min[1] <<" "<< box.min[1]<<" "<< box.max[1]<<endl;
 
   }
 
