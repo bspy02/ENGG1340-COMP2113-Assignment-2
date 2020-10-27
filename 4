@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdbool.h> 
+#include <ctype.h>
+
+const int MAX_TEXT_LEN = 50;
+
+int main()
+{
+  char text[MAX_TEXT_LEN+1],ch;
+  scanf("%s", text);
+      // printf("%s\n", text);
+  char scanned[MAX_TEXT_LEN+1];
+  int n = 0;
+  for(int h = 0; text[h] != '\0'; h++)
+  {
+      bool inside = false;
+      for (int j = 0; j<n; ++j)
+      {
+          inside = inside || (tolower(text[h]) == tolower(scanned[j]));
+      }
+      if(!inside)
+      {
+          int count = 0;
+          for (int i = 0; text[i] != '\0'; ++i) 
+          {
+              if (tolower(text[h]) == tolower(text[i])) ++count;
+          }
+          printf("%c  %d\n", tolower(text[h]), count);          
+          scanned[n] = text[h];n++;
+      }
+  }
+  return 0;
+}
