@@ -13,20 +13,26 @@ int main()
   int n = 0;
   for(int h = 0; text[h] != '\0'; h++)
   {
+      char search = tolower(text[h]);
+      text[h] = search;
+
       bool inside = false;
       for (int j = 0; j<n; ++j)
       {
-          inside = inside || (tolower(text[h]) == tolower(scanned[j]));
+          inside = inside || (search == scanned[j]);
       }
+      
       if(!inside)
       {
+          scanned[n] = search;n++;
+          
           int count = 0;
           for (int i = 0; text[i] != '\0'; ++i) 
           {
-              if (tolower(text[h]) == tolower(text[i])) ++count;
+              if (search ==text[i]) ++count;
           }
-          printf("%c  %d\n", tolower(text[h]), count);          
-          scanned[n] = text[h];n++;
+          printf("%c  %d\n", search, count);          
+          
       }
   }
   return 0;
