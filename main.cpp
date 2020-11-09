@@ -1,56 +1,48 @@
+// d2boh.cpp
+
 #include <iostream>
-#include <fstream>
-#include <string>
-
+#include "d2boh.h"
 using namespace std;
+int all(int input, char output[10], int num) {
+  int reverse[10]; 
+  int n = 0;         
+  while (input > 0){
+    reverse[n] = input % num;  
+    input = input / num;
+    n++;
+  }
+  for (int j = n - 1; j >=0; j--)  
+    output[n - 1 - j] = '0' + reverse[j];
+  return n;
+}
 
-// Search for a word w in a file named fn
-// word: word to search for
-// fn: name of file to search
-// nLines: (output) number of lines w appear in fn
-// total: (output) total number of occurrences of w in fn
-// return 0 if file operation is successful
-// return 1 otherwise
-int SearchWord(string word, string fn, int &nLines, int &total)
-{
-
-  return 0;
+int decimal_to_binary(int input, char output[10]) {
+  return all(input,output,2);
 }
 
 
+int decimal_to_octal(int input, char output[10]) {
+  return all(input,output,8);
+}
 
-// argc is the number of arguments from the command line
-// argv[0] == program name
-// argv[1..argc-1] are the arguments
-// e.g., if this program's name is "prog" and the following command is run
-// at the command prompt:
-// > ./prog word file1 file2
-// then in the main function, argc is 4, and argv[0] is "./prog",
-// argv[1] is "word", argv[2] = "file1", argv[3] = "file2"
-//
-// usage: ./wordsearch word_to_search file1 file2 files3 ...
-//
-int main(int argc, char* argv[])
-{
-  if (argc < 3) {
-    cout << "usage: " << argv[0] << " [word_to_search] [file1] [file2] [file3]...\n";
-    exit(1);
+
+int decimal_to_hexadecimal(int input, char output[10]) {
+  char reverse[10];   //char array to store hexadecimal number
+  int i = 0;          //couter for hexadecimal array
+  while (input != 0){
+    int store = 0;    //temporary storage for remainder
+    store = input % 16;
+    if (store < 10){
+      reverse[i] = store + 48;
+      i++;
+    }
+    else{
+      reverse[i] = store + 55;
+      i++;
+    }
+    input = input / 16;
   }
-
-  string word = argv[1];  // word to search for
-
-  // loop through all the filenames in the command line argument
-  for (int i = 2; i < argc; ++i) {
-    string filename = argv[i];
-    int lineCount=0, totalCount=0;
-    // search word in file
-    if (SearchWord(word, filename, lineCount, totalCount))
-      cout << filename << ": error opening file" << endl;
-    else
-      cout << filename << ": " << lineCount << " " << totalCount << endl;
-  }
-
-
-  return 0;
-
+  for (int j = i - 1; j >= 0; j--)
+    output[i - 1- j] = reverse[j];    
+  return i;
 }
